@@ -1,6 +1,5 @@
 import {
   pgTable,
-  uuid,
   text,
   timestamp,
   integer,
@@ -9,35 +8,33 @@ import {
   boolean,
   uniqueIndex,
   index,
+  serial,
 } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: serial("id").primaryKey().notNull(),
   clerkId: varchar("clerk_id").notNull().unique(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const beans = pgTable("beans", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id")
-    .references(() => users.id)
-    .notNull(),
+  id: serial("id").primaryKey().notNull(),
   name: text("name").notNull(),
   roaster: text("roaster").notNull(),
   origin: text("origin").notNull(),
   roastDate: timestamp("roast_date").notNull(),
-  startingWeight: numeric("starting_weight").notNull(),
-  currentWeight: numeric("current_weight").notNull(),
+  startingWeight: integer("starting_weight").notNull(),
+  currentWeight: integer("current_weight").notNull(),
   notes: text("notes"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const brews = pgTable("brews", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id")
+  id: serial("id").primaryKey().notNull(),
+  userId: integer("user_id")
     .references(() => users.id)
     .notNull(),
-  beanId: uuid("bean_id")
+  beanId: integer("bean_id")
     .references(() => beans.id)
     .notNull(),
   method: text("method").notNull(),
@@ -56,8 +53,8 @@ export const brews = pgTable("brews", {
 });
 
 export const subscriptions = pgTable("subscriptions", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id")
+  id: serial("id").primaryKey().notNull(),
+  userId: integer("user_id")
     .references(() => users.id)
     .notNull(),
   stripeCustomerId: varchar("stripe_customer_id").notNull(),
@@ -72,8 +69,8 @@ export const subscriptions = pgTable("subscriptions", {
 export const userFeatures = pgTable(
   "user_features",
   {
-    id: uuid("id").defaultRandom().primaryKey(),
-    userId: uuid("user_id")
+    id: serial("id").primaryKey().notNull(),
+    userId: integer("user_id")
       .references(() => users.id)
       .notNull(),
     featureId: varchar("feature_id").notNull(),

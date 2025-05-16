@@ -1,3 +1,5 @@
+"use client";
+
 import { limitedNavItems, NavItem } from "@/data/navigation";
 import React from "react";
 import {
@@ -8,7 +10,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 
 const LimitedNav = () => {
   return (
@@ -16,13 +18,6 @@ const LimitedNav = () => {
       {/* Logo */}
       <div className="flex items-center">
         <h1 className="text-3xl font-bold">Coffee App</h1>
-        {/* <Image
-          src="/placeholder-logo.png"
-          alt="Coffee App Logo"
-          width={40}
-          height={40}
-          className="mr-4"
-        /> */}
       </div>
 
       {/* Navigation Items */}
@@ -42,12 +37,14 @@ const LimitedNav = () => {
 
       {/* Auth Buttons */}
       <div className="flex items-center gap-4">
-        <Button variant="ghost" asChild>
-          <Link href="/login">Login</Link>
-        </Button>
-        <Button asChild>
-          <Link href="/signup">Sign Up</Link>
-        </Button>
+        <SignInButton mode="modal">
+          <Button variant="ghost" className="cursor-pointer">
+            Sign In
+          </Button>
+        </SignInButton>
+        <SignUpButton mode="modal">
+          <Button className="cursor-pointer">Sign Up</Button>
+        </SignUpButton>
       </div>
     </nav>
   );
