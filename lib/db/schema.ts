@@ -52,6 +52,25 @@ export const brews = pgTable("brews", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const equipment = pgTable(
+  "equipment",
+  {
+    id: serial("id").primaryKey().notNull(),
+    userId: integer("user_id")
+      .references(() => users.id)
+      .notNull(),
+    brand: text("brand").notNull(),
+    model: text("model").notNull(),
+    category: text("category").notNull(),
+    isCustomCategory: boolean("is_custom_category").default(false).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    userIdIdx: index("equipment_user_id_idx").on(table.userId),
+  })
+);
+
 export const subscriptions = pgTable("subscriptions", {
   id: serial("id").primaryKey().notNull(),
   userId: integer("user_id")

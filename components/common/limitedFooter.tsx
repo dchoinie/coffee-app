@@ -8,7 +8,7 @@ const LimitedFooter = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t bg-gray-50">
+    <footer className="w-full bg-gray-50">
       <Container>
         <div className="flex flex-col md:flex-row justify-between py-8 gap-8">
           {/* Logo and Social Links */}

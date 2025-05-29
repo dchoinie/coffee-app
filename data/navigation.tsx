@@ -56,6 +56,10 @@ export const fullNavItems: NavItem[] = [
     link: "/beans",
   },
   {
+    label: "Equipment",
+    link: "/equipment",
+  },
+  {
     label: "Analytics",
     link: "/analytics",
   },

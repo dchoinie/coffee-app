@@ -14,7 +14,7 @@ import { SignInButton, SignUpButton } from "@clerk/nextjs";
 
 const LimitedNav = () => {
   return (
-    <nav className="flex items-center justify-between px-6 py-4 border-b">
+    <nav className="flex items-center justify-between px-6 py-4">
       {/* Logo */}
       <div className="flex items-center">
         <h1 className="text-3xl font-bold">Coffee App</h1>
@@ -39,7 +39,7 @@ const LimitedNav = () => {
       <div className="flex items-center gap-4">
         <SignInButton mode="modal">
           <Button variant="ghost" className="cursor-pointer">
-            Sign In
+            Log In
           </Button>
         </SignInButton>
         <SignUpButton mode="modal">
