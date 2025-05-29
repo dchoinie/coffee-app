@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import UserCreationHandler from "@/components/feature/users/UserCreationHandler";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -16,6 +17,16 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Coffee App",
   description: "Coffee App",
+  icons: {
+    icon: [
+      {
+        url: "/coffee.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    shortcut: "/coffee.svg",
+    apple: "/coffee.svg",
+  },
 };
 
 export default function RootLayout({
@@ -29,6 +40,7 @@ export default function RootLayout({
         <body
           className={`${playfair.variable} ${inter.variable} font-sans antialiased min-h-screen flex flex-col`}
         >
+          <UserCreationHandler />
           {children}
         </body>
       </html>
